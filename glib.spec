@@ -8,7 +8,7 @@ Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
 Version:	1.2.10
-Release:	5
+Release:	6
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -110,6 +110,7 @@ Biblioteki statyczne do glib.
 %patch0 -p1
 
 %build
+cp -f /usr/share/automake/config.* .
 %configure2_13 \
 	--enable-threads
 %{__make}
