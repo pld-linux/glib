@@ -61,6 +61,7 @@ Biblioteki statyczne do glib.
 
 %build
 autoconf
+CFLAGS="$RPM_OPT_FLAGS"; export CFLAGS
 %configure \
 	--prefix=/usr \
 	--enable-threads
