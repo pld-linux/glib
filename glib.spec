@@ -1,7 +1,7 @@
 Summary:     Handy library of utility functions
 Name:        glib
 Version:     1.1.2
-Release:     1
+Release:     2
 Copyright:   LGPL
 Group:       Libraries
 Source:      ftp://ftp.gimp.org/pub/gtk/v1.0/%{name}-%{version}.tar.gz
@@ -34,18 +34,15 @@ Static glib libraries.
 %setup -q
 
 %build
-# Needed for snapshot releases.
-if [ ! -f configure ]; then
-  CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=/usr
-else
-  CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=/usr
-fi
+CFLAGS="$RPM_OPT_FLAGS" ./configure \
+	--prefix=/usr/X11R6 \
+	--datadir=/usr/share
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make prefix=$RPM_BUILD_ROOT/usr install
+make install DESTDIR=$RPM_BUILD_ROOT
 
-strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
+strip $RPM_BUILD_ROOT/usr/X11R6/lib/lib*.so.*.*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -54,21 +51,25 @@ rm -rf $RPM_BUILD_ROOT
 %postun -p /sbin/ldconfig
 
 %files
-%attr(755, root, root) /usr/lib/libg*.so.*.*
+%attr(755, root, root) /usr/X11R6/lib/libg*.so.*.*
 
 %files devel
 %defattr(644, root, root, 755)
 %doc AUTHORS ChangeLog NEWS README
-/usr/lib/lib*.so
-/usr/lib/glib
-/usr/include/*
+/usr/X11R6/lib/lib*.so
+/usr/X11R6/lib/glib
+/usr/X11R6/include/*
 /usr/share/aclocal/*
-%attr(755, root, root) /usr/bin/*
+%attr(755, root, root) /usr/X11R6/bin/*
 
 %files static
-%attr(644, root, root) /usr/lib/lib*.a
+%attr(644, root, root) /usr/X11R6/lib/lib*.a
 
 %changelog
+* Fri Sep 18 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.1.2-2]
+- changed prefix to /usr/X11R6.
+
 * Mon Aug  10 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.1.2-1]
 - added -q %setup parameter,
