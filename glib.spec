@@ -71,7 +71,7 @@ make
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 
-strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
+strip $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT%{_infodir}/glib* \
 	$RPM_BUILD_ROOT%{_mandir}/man1/* \
@@ -92,15 +92,15 @@ fi
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(755,root,root) /usr/lib/libg*.so.*.*
+%attr(755,root,root) %{_libdir}/libg*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %doc {AUTHORS,ChangeLog,NEWS,README}.gz
 
-%attr(755,root,root) /usr/lib/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.so
 
-/usr/lib/glib
+%{_libdir}/glib
 /usr/include/*
 /usr/share/aclocal/*
 
@@ -110,7 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/glib-config.1.*
 
 %files static
-%attr(644,root,root) /usr/lib/lib*.a
+%attr(644,root,root) %{_libdir}/lib*.a
 
 %changelog
 * Mon May 10 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
