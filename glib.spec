@@ -1,7 +1,7 @@
 Summary:	Useful routines for 'C' programming
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Name:		glib
-Version:	1.1.13
+Version:	1.1.14
 Release:	1d
 Copyright:	LGPL
 Group:		X11/Libraries
