@@ -7,13 +7,13 @@ Summary(fr):	Bibliothèque de fonctions utilitaires.
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
-Version:	1.3.1
+Version:	1.3.2
 Release:	2
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source0:	ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/%{name}-%{version}.tar.gz
 # seems to be no info inside since version 1.3.1
 #Patch0:		glib-info.patch
 URL:		http://www.gtk.org/
