@@ -2,7 +2,7 @@ Summary:	Useful routines for 'C' programming
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Name:		glib
 Version:	1.2.2
-Release:	1
+Release:	2
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
@@ -60,6 +60,7 @@ Biblioteki statyczne do glib.
 %patch0 -p1
 
 %build
+autoconf
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure %{_target} \
 	--prefix=/usr \
@@ -72,19 +73,19 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT/usr/info/glib* \
-	$RPM_BUILD_ROOT/usr/man/man1/* \
+gzip -9nf $RPM_BUILD_ROOT/usr/share/info/glib* \
+	$RPM_BUILD_ROOT/usr/share/man/man1/* \
 	AUTHORS ChangeLog NEWS README
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info /usr/info/glib.info.gz /etc/info-dir
+/sbin/install-info /usr/share/info/glib.info.gz /etc/info-dir
 
 %preun devel
 if [ "$1" = "0" ]; then
-	/sbin/install-info --delete /usr/info/glib.info.gz /etc/info-dir
+	/sbin/install-info --delete /usr/share/info/glib.info.gz /etc/info-dir
 fi
 
 %clean
@@ -103,15 +104,19 @@ rm -rf $RPM_BUILD_ROOT
 /usr/include/*
 /usr/share/aclocal/*
 
-/usr/info/glib.info*
+/usr/share/info/glib.info*
 
 %attr(755,root,root) /usr/bin/*
-/usr/man/man1/glib-config.1.*
+/usr/share/man/man1/glib-config.1.*
 
 %files static
 %attr(644,root,root) /usr/lib/lib*.a
 
 %changelog
+* Mon May 10 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.2.2-2]
+- FHS 2.0 compilant changes.
+
 * Thu Mar 25 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.2.1-1]
 - gzipping %doc.
