@@ -75,11 +75,11 @@ gzip -9nf $RPM_BUILD_ROOT/usr/{info/glib*,X11R6/man/man1/*}
 rm -rf $RPM_BUILD_ROOT
 
 %post devel
-/sbin/install-info /usr/info/glib.info.gz /usr/info/dir --entry \
+/sbin/install-info /usr/info/glib.info.gz /etc/info-dir --entry \
 "* GLIB: (glib).                                 Useful routines for 'C' programming"
 
 %preun devel
-/sbin/install-info --delete /usr/info/glib.info.gz /usr/info-dir
+/sbin/install-info --delete /usr/info/glib.info.gz /etc/info-dir
 
 %files
 %attr(755, root, root) /usr/X11R6/lib/libg*.so.*.*
