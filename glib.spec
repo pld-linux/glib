@@ -20,6 +20,7 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-ac25.patch
 Patch2:		%{name}-am18.patch
 Patch3:		%{name}-link.patch
+Patch4:		%{name}-gcc34.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.13
 BuildRequires:	automake >= 1.4
@@ -63,7 +64,7 @@ dosyalarý glib-devel paketinde yer almaktadýr.
 Summary:	Glib heades files, documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	libglib1.2-devel
 
 %description devel
@@ -79,7 +80,7 @@ programów wykorzystuj±cych tê bibliotekê.
 Summary:	Static glib libraries
 Summary(pl):	Biblioteki statyczne do glib
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static glib libraries.
@@ -93,6 +94,7 @@ Biblioteki statyczne do glib.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 rm -f acinclude.m4
