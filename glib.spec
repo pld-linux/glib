@@ -1,6 +1,6 @@
 Summary:     Handy library of utility functions
 Name:        glib
-Version:     1.1.3
+Version:     1.1.4
 Release:     1
 Copyright:   LGPL
 Group:       Libraries
