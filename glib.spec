@@ -106,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_infodir}/glib.info*
 
-%attr(755,root,root) /usr/bin/*
+%attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/glib-config.1.*
 
 %files static
