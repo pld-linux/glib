@@ -8,7 +8,7 @@ Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
 Version:	1.2.10
-Release:	3
+Release:	4
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -16,6 +16,7 @@ Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
+Source1:	http://developer.gnome.org/doc/API/%{name}-docs.tar.gz
 Patch0:		%{name}-info.patch
 URL:		http://www.gtk.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -91,7 +92,7 @@ Static glib libraries.
 Biblioteki statyczne do glib.
 
 %prep
-%setup -q
+%setup -q -a1
 %patch0 -p1
 
 %build
@@ -126,7 +127,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz
+%doc *.gz glib/*.html
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
 %{_pkgconfigdir}/*
