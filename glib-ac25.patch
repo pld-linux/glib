@@ -1,6 +1,6 @@
-diff -Nru glib-1.2.10.orig/Makefile.am glib-1.2.10/Makefile.am
---- glib-1.2.10.orig/Makefile.am	Sat Oct 28 06:35:30 2000
-+++ glib-1.2.10/Makefile.am	Wed Jun 19 13:09:33 2002
+diff -Nru glib-1.2.10/Makefile.am glib-1.2.10.new/Makefile.am
+--- glib-1.2.10/Makefile.am	Sat Oct 28 06:35:30 2000
++++ glib-1.2.10.new/Makefile.am	Fri Jan  3 16:25:24 2003
 @@ -8,7 +8,6 @@
  configincludedir = $(pkglibdir)/include
  
@@ -18,20 +18,9 @@ diff -Nru glib-1.2.10.orig/Makefile.am glib-1.2.10/Makefile.am
  glibconfig.h: stamp-gc-h
  	@:
  stamp-gc-h: config.status
-diff -Nru glib-1.2.10.orig/gmodule/Makefile.am glib-1.2.10/gmodule/Makefile.am
---- glib-1.2.10.orig/gmodule/Makefile.am	Thu Mar 15 16:33:10 2001
-+++ glib-1.2.10/gmodule/Makefile.am	Wed Jun 19 13:09:33 2002
-@@ -42,7 +42,7 @@
- libgplugin_b_la_LIBADD = @G_MODULE_LIBS@ # $(libglib)
- 
- noinst_PROGRAMS = testgmodule
--testgmodule_LDFLAGS += @G_MODULE_LDFLAGS@
-+testgmodule_LDFLAGS = @G_MODULE_LDFLAGS@
- testgmodule_LDADD = libgmodule.la $(libglib) @G_MODULE_LIBS@
- 
- .PHONY: files release
---- glib-1.2.10/configure.in~	Thu Mar 15 15:37:37 2001
-+++ glib-1.2.10/configure.in	Fri Nov 22 21:16:35 2002
+diff -Nru glib-1.2.10/configure.in glib-1.2.10.new/configure.in
+--- glib-1.2.10/configure.in	Thu Mar 15 16:37:37 2001
++++ glib-1.2.10.new/configure.in	Fri Jan  3 16:27:40 2003
 @@ -17,7 +17,7 @@
  
  dnl we need to AC_DIVERT_PUSH/AC_DIVERT_POP these variable definitions so they
@@ -50,4 +39,28 @@ diff -Nru glib-1.2.10.orig/gmodule/Makefile.am glib-1.2.10/gmodule/Makefile.am
  if test `expr $GLIB_MINOR_VERSION \% 2` = 1 ; then
  	debug_default=yes
  else
-
+@@ -507,9 +507,9 @@
+ dnl *** dlopen() and dlsym() in system libraries
+ if test -z "$G_MODULE_IMPL"; then
+ 	AC_CHECK_FUNC(dlopen,
+-		AC_CHECK_FUNC(dlsym,
+-			G_MODULE_IMPL=G_MODULE_IMPL_DL
+-		,)
++		[AC_CHECK_FUNC(dlsym,
++			[G_MODULE_IMPL=G_MODULE_IMPL_DL]
++		,)]
+ 	,)
+ fi
+ dnl *** dlopen() and dlsym() in libdl
+diff -Nru glib-1.2.10/gmodule/Makefile.am glib-1.2.10.new/gmodule/Makefile.am
+--- glib-1.2.10/gmodule/Makefile.am	Thu Mar 15 16:33:10 2001
++++ glib-1.2.10.new/gmodule/Makefile.am	Fri Jan  3 16:25:24 2003
+@@ -42,7 +42,7 @@
+ libgplugin_b_la_LIBADD = @G_MODULE_LIBS@ # $(libglib)
+ 
+ noinst_PROGRAMS = testgmodule
+-testgmodule_LDFLAGS += @G_MODULE_LDFLAGS@
++testgmodule_LDFLAGS = @G_MODULE_LDFLAGS@
+ testgmodule_LDADD = libgmodule.la $(libglib) @G_MODULE_LIBS@
+ 
+ .PHONY: files release
