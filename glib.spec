@@ -15,6 +15,7 @@ Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
 Source1:	http://developer.gnome.org/doc/API/%{name}-docs.tar.gz
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-ac25.patch
 URL:		http://www.gtk.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libglib1.2
@@ -87,10 +88,16 @@ Biblioteki statyczne do glib.
 %prep
 %setup -q -a1
 %patch0 -p1
+%patch1 -p1
 
 %build
 cp -f /usr/share/automake/config.* .
-%configure2_13 \
+rm -f acinclude.m4
+%{__libtoolize}
+aclocal
+%{__autoconf}
+%{__automake}
+%configure \
 	--enable-threads
 %{__make}
 
