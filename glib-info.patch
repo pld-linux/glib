@@ -9,7 +9,7 @@ diff -Nru glib-1.1.11/docs/glib.texi glib-1.1.11.new/docs/glib.texi
 +@dircategory Libraries:
  @direntry
 -* GLIB: (glib).        useful routines for 'C' programming
-+* GLIB: (glib)				Useful routines for 'C' programming
++* GLIB: (glib).				Useful routines for 'C' programming
  @end direntry
  
  @node Top, Copying, (dir), (dir)
