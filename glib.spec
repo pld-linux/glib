@@ -1,7 +1,7 @@
 Summary:	Useful routines for 'C' programming
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Name:		glib
-Version:	1.2.0
+Version:	1.2.1
 Release:	1
 Copyright:	LGPL
 Group:		Libraries
@@ -73,10 +73,9 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT/usr/info/glib* 
-
-gzip -9fn $RPM_BUILD_ROOT/usr/man/man1/*
-bzip2 -9  AUTHORS ChangeLog NEWS README
+gzip -9nf $RPM_BUILD_ROOT/usr/info/glib* \
+	$RPM_BUILD_ROOT/usr/man/man1/* \
+	AUTHORS ChangeLog NEWS README
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -97,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc {AUTHORS,ChangeLog,NEWS,README}.bz2
+%doc {AUTHORS,ChangeLog,NEWS,README}.gz
 
 %attr(755,root,root) /usr/lib/lib*.so
 
@@ -108,12 +107,16 @@ rm -rf $RPM_BUILD_ROOT
 /usr/info/glib.info*
 
 %attr(755,root,root) /usr/bin/*
-/usr/man/man1/glib-config.1.gz
+/usr/man/man1/glib-config.1.*
 
 %files static
 %attr(644,root,root) /usr/lib/lib*.a
 
 %changelog
+* Thu Mar 25 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.2.1-1]
+- gzipping %doc.
+
 * Sat Feb 27 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.2.0-1]
 - changed Group fields to Libraries, Development/Libraries and
