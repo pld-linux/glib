@@ -1,0 +1,24 @@
+--- glib-1.2.10/gmodule/Makefile.am.orig	2003-12-13 21:46:45.000000000 +0100
++++ glib-1.2.10/gmodule/Makefile.am	2003-12-13 21:50:34.086172600 +0100
+@@ -29,9 +29,7 @@
+ 	-release $(LT_RELEASE) \
+ 	-export-dynamic
+ 
+-libgmodule_la_LIBADD = @G_MODULE_LIBS@ # $(libglib)
+-# we should really depend on $(libglib) for libgmodule.la, but libtool has a
+-# problem with this ;(
++libgmodule_la_LIBADD = @G_MODULE_LIBS@ $(libglib)
+ 
+ libgplugin_a_la_SOURCES = libgplugin_a.c
+ libgplugin_a_la_LDFLAGS = @G_MODULE_LDFLAGS@ -avoid-version -module
+--- glib-1.2.10/gthread/Makefile.am.orig	2003-12-13 22:01:36.295501480 +0100
++++ glib-1.2.10/gthread/Makefile.am	2003-12-13 22:01:43.420418328 +0100
+@@ -19,7 +19,7 @@
+ 	-release $(LT_RELEASE) \
+ 	-export-dynamic
+ 
+-libgthread_la_LIBADD = @G_THREAD_LIBS@
++libgthread_la_LIBADD = @G_THREAD_LIBS@ $(libglib)
+ 
+ noinst_PROGRAMS = testgthread
+ testgthread_LDADD = ../libglib.la libgthread.la 
