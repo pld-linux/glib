@@ -40,7 +40,7 @@ og headerfiler er i glib-devel pakken.
 Eine nützliche Library von Dienstprogramm-Funktionen.
 Entwicklungs-Libraries und Header befinden sich in glib-devel.
 
-%desription -l fi
+%description -l fi
 Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja header-tiedostot
 ovat glib-devel-paketissa.
 
@@ -103,7 +103,8 @@ Biblioteki statyczne do glib.
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	m4datadir=%{_aclocaldir}
+	m4datadir=%{_aclocaldir} \
+	pkgconfigdir=%{_pkgconfigdir}
 
 gzip -9nf AUTHORS ChangeLog NEWS README
 
@@ -128,7 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.gz
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
-%{_libdir}/pkgconfig/*
+%{_pkgconfigdir}/*
 %{_libdir}/glib
 %{_includedir}/*
 %{_aclocaldir}/*
