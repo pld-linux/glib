@@ -1,7 +1,7 @@
 Summary:     Handy library of utility functions
 Name:        glib
-Version:     1.1.2
-Release:     2
+Version:     1.1.3
+Release:     1
 Copyright:   LGPL
 Group:       Libraries
 Source:      ftp://ftp.gimp.org/pub/gtk/v1.0/%{name}-%{version}.tar.gz
@@ -37,6 +37,8 @@ Static glib libraries.
 CFLAGS="$RPM_OPT_FLAGS" ./configure \
 	--prefix=/usr/X11R6 \
 	--datadir=/usr/share
+
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
