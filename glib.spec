@@ -22,7 +22,7 @@ funkcji mieszaj±cych, funkcji do alokacji pamiêci i wielu innych
 podstawowych funkcji i ró¿nych struktur danych u¿ywanych przez program GIMP i
 wiele innch.
 
-%package	devel
+%package devel
 Summary:	Glib heades files, documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Group:		Development/Libraries
@@ -41,7 +41,7 @@ structures.
 Pliki nag³ówkowe i dokumentacja do glib przydatna przy pisaniu programów
 wykorzystuj±cych tê bibliotekê.
 
-%package	static
+%package static
 Summary:	Static glib libraries
 Summary(pl):	Biblioteki statyczne do glib
 Group:		Development/Libraries
@@ -59,7 +59,7 @@ Biblioteki statyczne do glib.
 %patch -p1
 
 %build
-aclocal && autoconf
+autoconf
 %configure \
 	--prefix=%{_prefix} \
 	--enable-threads
@@ -90,8 +90,7 @@ fi
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(755,root,root,755)
-%{_libdir}/libg*.so.*
+%attr(755,root,root) %{_libdir}/libg*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
@@ -109,9 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/glib-config.1.*
 
 %files static
-%defattr(644,root,root,755) 
-
-%{_libdir}/lib*.a
+%attr(644,root,root) %{_libdir}/lib*.a
 
 %changelog
 * Mon May 10 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
