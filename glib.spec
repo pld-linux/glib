@@ -93,7 +93,7 @@ Biblioteki statyczne do glib.
 %build
 %configure \
 	--enable-threads
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
