@@ -109,10 +109,3 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %attr(644,root,root) %{_libdir}/lib*.a
-
-%changelog
-* Mon May 10 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.2.2-2]
-- spec based on version included in tar ball,
-- spec rewrited in PLD coding style,
-- added pl translation.
