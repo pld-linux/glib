@@ -68,16 +68,17 @@ gzip -9nf $RPM_BUILD_ROOT/usr/info/glib*
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
+%post devel
 /sbin/install-info /usr/info/glib.info.gz /usr/info/dir --entry \
 "* GLIB: (glib).                                 Useful routines for 'C' programming"
 
-%preun
+%preun devel
 /sbin/install-info --delete /usr/info/glib.info.gz /usr/info/dir --entry \
 "* GLIB: (glib).                                 Useful routines for 'C' programming"
 
-%postun -p /sbin/ldconfig
 
 %files
 %attr(755, root, root) /usr/X11R6/lib/libg*.so.*.*
