@@ -8,13 +8,14 @@ Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
 Version:	1.2.8
-Release:	4
+Release:	5
 License:	LGPL
 Group:		Libraries
+Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
-Patch0:		glib-info.patch
+Patch0:		%{name}-info.patch
 URL:		http://www.gtk.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,6 +57,7 @@ dosyalarý glib-devel paketinde yer almaktadýr.
 Summary:	Glib heades files, documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -76,6 +78,7 @@ programów wykorzystuj±cych tê bibliotekê.
 Summary:	Static glib libraries
 Summary(pl):	Biblioteki statyczne do glib
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
@@ -101,11 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir}
 
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
-
-gzip -9nf $RPM_BUILD_ROOT%{_infodir}/glib* \
-	$RPM_BUILD_ROOT%{_mandir}/man1/* \
-	AUTHORS ChangeLog NEWS README
+gzip -9nf AUTHORS ChangeLog NEWS README
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
