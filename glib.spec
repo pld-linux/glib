@@ -40,8 +40,8 @@ Eine nützliche Library von Dienstprogramm-Funktionen.
 Entwicklungs-Libraries und Header befinden sich in glib-devel.
 
 %description -l fi
-Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja header-tiedostot
-ovat glib-devel-paketissa.
+Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja
+header-tiedostot ovat glib-devel-paketissa.
 
 %description -l pl
 Glib jest zestawem bibliotek zawieraj±cych funkcje do obs³ugi list,
@@ -60,7 +60,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	autoconf >= 2.13
 Requires:	automake >= 1.4
-Requires:	libtool	 >= 1.3.2 
+Requires:	libtool	 >= 1.3.2
 Obsoletes:	libglib1.2-devel
 
 %description devel
@@ -68,7 +68,7 @@ Header files for the support library for the GIMP's X libraries, which
 are available as public libraries. GLIB includes generally useful data
 structures.
 
-%description -l pl devel
+%description devel -l pl
 Pliki nag³ówkowe i dokumentacja do glib przydatna przy pisaniu
 programów wykorzystuj±cych tê bibliotekê.
 
@@ -81,7 +81,7 @@ Requires:	%{name}-devel = %{version}
 %description static
 Static glib libraries.
 
-%description -l pl static
+%description static -l pl
 Biblioteki statyczne do glib.
 
 %prep
