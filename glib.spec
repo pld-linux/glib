@@ -13,8 +13,12 @@ Epoch:		1
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
+Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
+Group(pt_BR):	Bibliotecas
+Group(ru):	‚…¬Ã…œ‘≈À…
+Group(uk):	‚¶¬Ã¶œ‘≈À…
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
 Source1:	http://developer.gnome.org/doc/API/%{name}-docs.tar.gz
 Patch0:		%{name}-info.patch
@@ -61,6 +65,7 @@ Summary:	Glib heades files, documentation
 Summary(pl):	Pliki nag≥Ûwkowe i dokumentacja do glib
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -83,6 +88,7 @@ Summary:	Static glib libraries
 Summary(pl):	Biblioteki statyczne do glib
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
