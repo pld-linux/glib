@@ -95,7 +95,7 @@ Biblioteki statyczne do glib.
 %patch0 -p1
 
 %build
-%configure \
+%configure2_13 \
 	--enable-threads
 %{__make}
 
