@@ -7,17 +7,17 @@ Summary(fr):	Bibliothèque de fonctions utilitaires
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
-Version:	1.2.8
-Release:	5
+Version:	1.2.10
+Release:	6
+Epoch:		1
 License:	LGPL
 Group:		Libraries
-Group(de):	Libraries
-Group(fr):	Librairies
-Group(pl):	Biblioteki
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
+Source1:	http://developer.gnome.org/doc/API/%{name}-docs.tar.gz
 Patch0:		%{name}-info.patch
 URL:		http://www.gtk.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	libglib1.2
 
 %define		_prefix		/usr
 
@@ -39,9 +39,9 @@ og headerfiler er i glib-devel pakken.
 Eine nützliche Library von Dienstprogramm-Funktionen.
 Entwicklungs-Libraries und Header befinden sich in glib-devel.
 
-%desription -l fi
-Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja header-tiedostot
-ovat glib-devel-paketissa.
+%description -l fi
+Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja
+header-tiedostot ovat glib-devel-paketissa.
 
 %description -l pl
 Glib jest zestawem bibliotek zawieraj±cych funkcje do obs³ugi list,
@@ -57,20 +57,18 @@ dosyalarý glib-devel paketinde yer almaktadýr.
 Summary:	Glib heades files, documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 Requires:	autoconf >= 2.13
 Requires:	automake >= 1.4
-Requires:	libtool	 >= 1.3.2 
+Requires:	libtool	 >= 1.3.2
+Obsoletes:	libglib1.2-devel
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
 are available as public libraries. GLIB includes generally useful data
 structures.
 
-%description -l pl devel
+%description devel -l pl
 Pliki nag³ówkowe i dokumentacja do glib przydatna przy pisaniu
 programów wykorzystuj±cych tê bibliotekê.
 
@@ -78,23 +76,21 @@ programów wykorzystuj±cych tê bibliotekê.
 Summary:	Static glib libraries
 Summary(pl):	Biblioteki statyczne do glib
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
 %description static
 Static glib libraries.
 
-%description -l pl static
+%description static -l pl
 Biblioteki statyczne do glib.
 
 %prep
-%setup -q
-%patch -p1
+%setup -q -a1
+%patch0 -p1
 
 %build
-%configure \
+cp -f /usr/share/automake/config.* .
+%configure2_13 \
 	--enable-threads
 %{__make}
 
@@ -102,9 +98,8 @@ Biblioteki statyczne do glib.
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	m4datadir=%{_aclocaldir}
-
-gzip -9nf AUTHORS ChangeLog NEWS README
+	m4datadir=%{_aclocaldir} \
+	pkgconfigdir=%{_pkgconfigdir}
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -120,14 +115,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libg*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc {AUTHORS,ChangeLog,NEWS,README}.gz
-
+%doc glib/*.html
 %attr(755,root,root) %{_libdir}/lib*.so
-
+%attr(755,root,root) %{_libdir}/lib*.la
+%{_pkgconfigdir}/*
 %{_libdir}/glib
 %{_includedir}/*
 %{_aclocaldir}/*
