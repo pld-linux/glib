@@ -1,11 +1,12 @@
 Summary:     Useful routines for 'C' programming
 Summary(pl): Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Name:        glib
-Version:     1.1.9
+Version:     1.1.11
 Release:     1
 Copyright:   LGPL
 Group:       Libraries
 Source:      ftp://ftp.gimp.org/pub/gtk/v1.1/%{name}-%{version}.tar.gz
+Patch0:      glib-info.patch
 URL:         http://www.gtk.org/
 BuildRoot:   /tmp/%{name}-%{version}-root
 
@@ -50,6 +51,7 @@ Biblioteki statyczne do glib.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
@@ -75,11 +77,12 @@ gzip -9nf $RPM_BUILD_ROOT/usr/{info/glib*,X11R6/man/man1/*}
 rm -rf $RPM_BUILD_ROOT
 
 %post devel
-/sbin/install-info /usr/info/glib.info.gz /etc/info-dir --entry \
-"* GLIB: (glib).                                 Useful routines for 'C' programming"
+/sbin/install-info /usr/info/glib.info.gz /etc/info-dir
 
 %preun devel
-/sbin/install-info --delete /usr/info/glib.info.gz /etc/info-dir
+if [ $1 = 0 ]; then
+	/sbin/install-info --delete /usr/info/glib.info.gz /etc/info-dir
+fi
 
 %files
 %attr(755, root, root) /usr/X11R6/lib/libg*.so.*.*
@@ -99,6 +102,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644, root, root) /usr/X11R6/lib/lib*.a
 
 %changelog
+* Sat Jan 01 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.1.11-1]
+- standarized {un}registering info pages (added glib-info.patch).
+
 * Sat Dec 19 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.1.9-1]
 - added gzipping man pages,
