@@ -17,6 +17,9 @@ Source1:	http://developer.gnome.org/doc/API/%{name}-docs.tar.gz
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-ac25.patch
 URL:		http://www.gtk.org/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libglib1.2
 
@@ -94,7 +97,7 @@ Biblioteki statyczne do glib.
 cp -f /usr/share/automake/config.* .
 rm -f acinclude.m4
 %{__libtoolize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
@@ -108,6 +111,9 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -116,9 +122,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun devel
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
