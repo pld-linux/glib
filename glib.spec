@@ -1,5 +1,11 @@
 Summary:	Useful routines for 'C' programming
+Summary(cs):	©ikovná knihovna s funkcemi pro pomocné programy
+Summary(da):	Nyttige biblioteksfunktioner
+Summary(de):	Eine nützliche Library von Dienstprogramm-Funktionen
+Summary(fi):	Kirjasto, jossa on työkalufunktioita
+Summary(fr):	Bibliothèque de fonctions utilitaires.
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
+Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
 Version:	1.2.4
 Release:	1
@@ -16,11 +22,31 @@ GLib, is a library which includes support routines for C such as lists,
 trees, hashes, memory allocation, and many other things. GLIB includes
 also generally useful data structures used by GIMP and many other.
 
+%description -l cs
+©ikovná knihovna s funkcemi pro pomocné programy. Vývojové knihovny a
+hlavièky jsou v balíèku glib-devel.
+
+%description -l da
+Nyttigt bibliotek med forskellige funktioner. Udviklings- biblioteker og
+headerfiler er i glib-devel pakken.
+
+%description -l de
+Eine nützliche Library von Dienstprogramm-Funktionen. Entwicklungs-Libraries
+und Header befinden sich in glib-devel.
+
+%desription -l fi
+Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja header-tiedostot
+ovat glib-devel-paketissa.
+
 %description -l pl
 Glib jest zestawem bibliotek zawieraj±cych funkcje do obs³ugi list, drzewek,
 funkcji mieszaj±cych, funkcji do alokacji pamiêci i wielu innych
 podstawowych funkcji i ró¿nych struktur danych u¿ywanych przez program GIMP i
 wiele innch.
+
+%description -l tr
+Yararlý yordamlar kitaplýðý. Geliþtirme kitaplýklarý ve baþlýk dosyalarý
+glib-devel paketinde yer almaktadýr.
 
 %package devel
 Summary:	Glib heades files, documentation
