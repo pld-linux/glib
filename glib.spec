@@ -8,11 +8,12 @@ Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
 Version:	1.2.7
-Release:	3
-Copyright:	LGPL
+Release:	4
+License:	LGPL
 Group:		Libraries
+Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source:		ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
 Patch0:		glib-info.patch
 URL:		http://www.gtk.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -20,40 +21,42 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_prefix		/usr
 
 %description
-GLib, is a library which includes support routines for C such as lists,
-trees, hashes, memory allocation, and many other things. GLIB includes
-also generally useful data structures used by GIMP and many other.
+GLib, is a library which includes support routines for C such as
+lists, trees, hashes, memory allocation, and many other things. GLIB
+includes also generally useful data structures used by GIMP and many
+other.
 
 %description -l cs
 ©ikovná knihovna s funkcemi pro pomocné programy. Vývojové knihovny a
 hlavièky jsou v balíèku glib-devel.
 
 %description -l da
-Nyttigt bibliotek med forskellige funktioner. Udviklings- biblioteker og
-headerfiler er i glib-devel pakken.
+Nyttigt bibliotek med forskellige funktioner. Udviklings- biblioteker
+og headerfiler er i glib-devel pakken.
 
 %description -l de
-Eine nützliche Library von Dienstprogramm-Funktionen. Entwicklungs-Libraries
-und Header befinden sich in glib-devel.
+Eine nützliche Library von Dienstprogramm-Funktionen.
+Entwicklungs-Libraries und Header befinden sich in glib-devel.
 
 %desription -l fi
 Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja header-tiedostot
 ovat glib-devel-paketissa.
 
 %description -l pl
-Glib jest zestawem bibliotek zawieraj±cych funkcje do obs³ugi list, drzewek,
-funkcji mieszaj±cych, funkcji do alokacji pamiêci i wielu innych
-podstawowych funkcji i ró¿nych struktur danych u¿ywanych przez program GIMP i
-wiele innch.
+Glib jest zestawem bibliotek zawieraj±cych funkcje do obs³ugi list,
+drzewek, funkcji mieszaj±cych, funkcji do alokacji pamiêci i wielu
+innych podstawowych funkcji i ró¿nych struktur danych u¿ywanych przez
+program GIMP i wiele innch.
 
 %description -l tr
-Yararlý yordamlar kitaplýðý. Geliþtirme kitaplýklarý ve baþlýk dosyalarý
-glib-devel paketinde yer almaktadýr.
+Yararlý yordamlar kitaplýðý. Geliþtirme kitaplýklarý ve baþlýk
+dosyalarý glib-devel paketinde yer almaktadýr.
 
 %package devel
 Summary:	Glib heades files, documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 Requires:	autoconf >= 2.13
@@ -61,18 +64,19 @@ Requires:	automake >= 1.4
 Requires:	libtool	 >= 1.3.2 
 
 %description devel
-Header files for the support library for the GIMP's X libraries, which are
-available as public libraries. GLIB includes generally useful data
+Header files for the support library for the GIMP's X libraries, which
+are available as public libraries. GLIB includes generally useful data
 structures.
 
 %description -l pl devel
-Pliki nag³ówkowe i dokumentacja do glib przydatna przy pisaniu programów
-wykorzystuj±cych tê bibliotekê.
+Pliki nag³ówkowe i dokumentacja do glib przydatna przy pisaniu
+programów wykorzystuj±cych tê bibliotekê.
 
 %package static
 Summary:	Static glib libraries
 Summary(pl):	Biblioteki statyczne do glib
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
@@ -93,7 +97,9 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+make install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	m4datadir=%{_aclocaldir}
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
@@ -114,6 +120,7 @@ gzip -9nf $RPM_BUILD_ROOT%{_infodir}/glib* \
 rm -rf $RPM_BUILD_ROOT
 
 %files
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libg*.so.*.*
 
 %files devel
@@ -124,7 +131,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_libdir}/glib
 %{_includedir}/*
-%{_datadir}/aclocal/*
+%{_aclocaldir}/*
 
 %{_infodir}/glib.info*
 
@@ -132,4 +139,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/glib-config.1.*
 
 %files static
-%attr(644,root,root) %{_libdir}/lib*.a
+%defattr(644,root,root,755)
+%{_libdir}/lib*.a
