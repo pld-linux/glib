@@ -8,7 +8,7 @@ Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
 Version:	1.2.6
-Release:	2
+Release:	3
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
@@ -17,7 +17,7 @@ Patch0:		glib-info.patch
 URL:		http://www.gtk.org/
 BuildRoot:	/tmp/%{name}-%{version}-root
 
-%define	_prefix	/usr
+%define		_prefix		/usr
 
 %description
 GLib, is a library which includes support routines for C such as lists,
@@ -89,7 +89,6 @@ Biblioteki statyczne do glib.
 
 %build
 %configure \
-	--prefix=%{_prefix}	\
 	--enable-threads
 make
 
