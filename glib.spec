@@ -101,7 +101,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so
 
 %{_libdir}/glib
-/usr/include/*
+%{_includedir}/*
 %{_datadir}/aclocal/*
 
 %{_infodir}/glib.info*
