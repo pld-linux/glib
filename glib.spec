@@ -1,7 +1,7 @@
 Summary:     Useful routines for 'C' programming
 Summary(pl): Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Name:        glib
-Version:     1.1.12
+Version:     1.1.13
 Release:     1
 Copyright:   LGPL
 Group:       Libraries
@@ -42,6 +42,7 @@ Summary:     Static glib libraries
 Summary(pl): biblioteki statyczne do glib
 Group:       X11/Libraries
 Requires:    %{name}-devel = %{version}
+Requires:    autoconf >= 2.13, automake >= 1.4, libtool >= 1.2d
 
 %description static
 Static glib libraries.
@@ -102,6 +103,11 @@ fi
 %attr(644, root, root) /usr/X11R6/lib/lib*.a
 
 %changelog
+* Mon Jan 18 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.1.13-1]
+- added "Requires: autoconf >= 2.13, automake >= 1.4, libtool >= 1.2d"
+  for devel subpackage.
+
 * Sat Jan 01 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.1.11-1]
 - standarized {un}registering info pages (added glib-info.patch).
