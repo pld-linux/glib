@@ -1,14 +1,15 @@
-Summary:     Useful routines for 'C' programming
-Summary(pl): Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
-Name:        glib
-Version:     1.1.13
-Release:     1
-Copyright:   LGPL
-Group:       Libraries
-Source:      ftp://ftp.gimp.org/pub/gtk/v1.1/%{name}-%{version}.tar.gz
-Patch0:      glib-info.patch
-URL:         http://www.gtk.org/
-BuildRoot:   /tmp/%{name}-%{version}-root
+Summary:	Useful routines for 'C' programming
+Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
+Name:		glib
+Version:	1.1.13
+Release:	1d
+Copyright:	LGPL
+Group:		X11/Libraries
+Group(pl):	X11/Biblioteki
+Source:		ftp://ftp.gimp.org/pub/gtk/v1.1/%{name}-%{version}.tar.gz
+Patch0:		glib-info.patch
+URL:		http://www.gtk.org/
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 GLib, is a library which includes support routines for C such as lists,
@@ -22,32 +23,34 @@ podstawowych funkcji i ró¿nch struktór danych u¿ywanych przez program GIMP i
 wiele innch.
 
 %package devel
-Summary:     Glib heades files, documentation
-Summary(pl): Pliki nag³ówkowe i dokumentacja do glib
-Group:       X11/Libraries
-Prereq:      /sbin/install-info
-Requires:    %{name} = %{version}
+Summary:	Glib heades files, documentation
+Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
+Group:		X11/Libraries/Development
+Group(pl):	X11/Biblioteki/Programowanie
+Prereq:		/sbin/install-info
+Requires:	%{name} = %{version}
+Requires:	autoconf >= 2.13, automake >= 1.4, libtool >= 1.2d
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which are
 available as public libraries. GLIB includes generally useful data
 structures.
 
-%description devel -l pl
+%description -l pl devel
 Pliki nag³owkowe i dokumentacja do glib przydatna przy pisaniu programów
 wykorzystuj±cych biblioteki glib.
 
 %package static
-Summary:     Static glib libraries
-Summary(pl): biblioteki statyczne do glib
-Group:       X11/Libraries
-Requires:    %{name}-devel = %{version}
-Requires:    autoconf >= 2.13, automake >= 1.4, libtool >= 1.2d
+Summary:	Static glib libraries
+Summary(pl):	Biblioteki statyczne do glib
+Group:		X11/Libraries/Development
+Group(pl):	X11/Biblioteki/Programowanie
+Requires:	%{name}-devel = %{version}
 
 %description static
 Static glib libraries.
 
-%description static -l pl
+%description -l pl static
 Biblioteki statyczne do glib.
 
 %prep
@@ -71,6 +74,8 @@ strip $RPM_BUILD_ROOT/usr/X11R6/lib/lib*.so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT/usr/{info/glib*,X11R6/man/man1/*}
 
+bzip2 -9 AUTHORS ChangeLog NEWS README
+
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -86,25 +91,29 @@ if [ $1 = 0 ]; then
 fi
 
 %files
-%attr(755, root, root) /usr/X11R6/lib/libg*.so.*.*
+%attr(755,root,root) /usr/X11R6/lib/libg*.so.*.*
 
 %files devel
-%defattr(644, root, root, 755)
-%doc AUTHORS ChangeLog NEWS README
+%defattr(644,root,root,755)
+%doc {AUTHORS,ChangeLog,NEWS,README}.bz2
 /usr/X11R6/lib/lib*.so
+
 /usr/X11R6/lib/glib
 /usr/X11R6/include/*
 /usr/share/aclocal/*
+
 /usr/info/glib.info*
-%attr(755, root, root) /usr/X11R6/bin/*
-%attr(644, root, root) /usr/X11R6/man/man1/glib-config.1.gz
+
+%attr(755,root,root) /usr/X11R6/bin/*
+%attr(644,root,root) /usr/X11R6/man/man1/glib-config.1.gz
 
 %files static
-%attr(644, root, root) /usr/X11R6/lib/lib*.a
+%attr(644,root,root) /usr/X11R6/lib/lib*.a
 
 %changelog
 * Mon Jan 18 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.1.13-1]
+  [1.1.13-1d]
+- added Group(pl) and changed all Group fields,
 - added "Requires: autoconf >= 2.13, automake >= 1.4, libtool >= 1.2d"
   for devel subpackage.
 
