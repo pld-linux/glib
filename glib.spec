@@ -25,8 +25,9 @@ URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.13
 BuildRequires:	automake >= 1.4
 BuildRequires:	libtool >= 1:1.4.2-9
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRequires:	texinfo
 Obsoletes:	libglib1.2
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 GLib, is a library which includes support routines for C such as
