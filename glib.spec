@@ -1,6 +1,7 @@
-Summary:     Handy library of utility functions
+Summary:     Useful routines for 'C' programming
+Summary(pl): Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Name:        glib
-Version:     1.1.4
+Version:     1.1.5
 Release:     1
 Copyright:   LGPL
 Group:       Libraries
@@ -9,26 +10,42 @@ URL:         http://www.gtk.org/
 BuildRoot:   /tmp/%{name}-%{version}-root
 
 %description
-Handy library of utility functions.  Development libs and headers
-are in glib-devel.
+GLib, is a library which includes support routines for C such as lists,
+trees, hashes, memory allocation, and many other things. GLIB includes
+also generally useful data structures used by GIMP and many other.
+
+%description -l pl
+Glib jest zestawem bibliotek zawieraj±cych funkcje do obs³ugi list, drzewek,
+funkcji mieszaj±cych, dunkcji do alokacji pamiêci i wielu innych
+podstawowych funkcji i ró¿nch struktór danych u¿ywanych przez program GIMP i
+wiele innch.
 
 %package devel
-Summary:     glib heades files, documentation
+Summary:     Glib heades files, documentation
+Summary(pl): Pliki nag³ówkowe i dokumentacja do glib
 Group:       X11/Libraries
-Requires:    %{name} = %{version}
+Requires:    %{name} = %{version}, /sbin/install-info
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which are
 available as public libraries. GLIB includes generally useful data
 structures.
 
+%description devel -l pl
+Pliki nag³owkowe i dokumentacja do glib przydatna przy pisaniu programów
+wykorzystuj±cych biblioteki glib.
+
 %package static
 Summary:     Static glib libraries
+Summary(pl): biblioteki statyczne do glib
 Group:       X11/Libraries
 Requires:    %{name}-devel = %{version}
 
 %description static
 Static glib libraries.
+
+%description static -l pl
+Biblioteki statyczne do glib.
 
 %prep
 %setup -q
@@ -36,8 +53,8 @@ Static glib libraries.
 %build
 CFLAGS="$RPM_OPT_FLAGS" ./configure \
 	--prefix=/usr/X11R6 \
-	--datadir=/usr/share
-
+	--datadir=/usr/share \
+	--infodir=/usr/info
 make
 
 %install
@@ -46,10 +63,20 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 strip $RPM_BUILD_ROOT/usr/X11R6/lib/lib*.so.*.*
 
+gzip -9nf $RPM_BUILD_ROOT/usr/info/glib*
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
+%post
+/sbin/ldconfig
+/sbin/install-info /usr/info/glib.info.gz /usr/info/dir --entry \
+"* GLIB: (glib).                                 Useful routines for 'C' programming"
+
+%preun
+/sbin/install-info --delete /usr/info/glib.info.gz /usr/info/dir --entry \
+"* GLIB: (glib).                                 Useful routines for 'C' programming"
+
 %postun -p /sbin/ldconfig
 
 %files
@@ -62,12 +89,20 @@ rm -rf $RPM_BUILD_ROOT
 /usr/X11R6/lib/glib
 /usr/X11R6/include/*
 /usr/share/aclocal/*
+/usr/info/glib.info*
 %attr(755, root, root) /usr/X11R6/bin/*
+%attr(644, root, root) /usr/X11R6/man/man1/glib-config.1
 
 %files static
 %attr(644, root, root) /usr/X11R6/lib/lib*.a
 
 %changelog
+* Tue Nov 24 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.1.5-1]
+- added pl translation,
+- added /usr/X11R6/man/man1/glib-config.1 and glib info to devel,
+- changes in Summary and %description.
+
 * Fri Sep 18 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.1.2-2]
 - changed prefix to /usr/X11R6.
