@@ -9,6 +9,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
 Version:	1.2.8
 Release:	6
+Epoch:		1
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
