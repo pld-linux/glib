@@ -54,7 +54,7 @@ header-tiedostot ovat glib-devel-paketissa.
 Glib jest zestawem bibliotek zawieraj±cych funkcje do obs³ugi list,
 drzewek, funkcji mieszaj±cych, funkcji do alokacji pamiêci i wielu
 innych podstawowych funkcji i ró¿nych struktur danych u¿ywanych przez
-program GIMP i wiele innch.
+program GIMP i wiele innych.
 
 %description -l tr
 Yararlý yordamlar kitaplýðý. Geliþtirme kitaplýklarý ve baþlýk
