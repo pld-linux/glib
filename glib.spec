@@ -1,7 +1,7 @@
 Summary:	Useful routines for 'C' programming
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Name:		glib
-Version:	1.1.14
+Version:	1.1.15
 Release:	1d
 Copyright:	LGPL
 Group:		X11/Libraries
@@ -29,7 +29,9 @@ Group:		X11/Libraries/Development
 Group(pl):	X11/Biblioteki/Programowanie
 Prereq:		/sbin/install-info
 Requires:	%{name} = %{version}
-Requires:	autoconf >= 2.13, automake >= 1.4, libtool >= 1.2d
+Requires:	autoconf >= 2.13
+Requires:	automake >= 1.4
+Requires:	libtool  >= 1.2d
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which are
@@ -72,9 +74,10 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 strip $RPM_BUILD_ROOT/usr/X11R6/lib/lib*.so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT/usr/{info/glib*,X11R6/man/man1/*}
+gzip -9nf $RPM_BUILD_ROOT/usr/info/glib* 
 
-bzip2 -9 AUTHORS ChangeLog NEWS README
+gzip -9fn $RPM_BUILD_ROOT/usr/X11R6/man/man1/*
+bzip2 -9  AUTHORS ChangeLog NEWS README
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -91,12 +94,14 @@ if [ $1 = 0 ]; then
 fi
 
 %files
-%attr(755,root,root) /usr/X11R6/lib/libg*.so.*.*
+%defattr(755,root,root,755)
+/usr/X11R6/lib/libg*.so.*
 
 %files devel
 %defattr(644,root,root,755)
 %doc {AUTHORS,ChangeLog,NEWS,README}.bz2
-/usr/X11R6/lib/lib*.so
+
+%attr(755,root,root) /usr/X11R6/lib/lib*.so
 
 /usr/X11R6/lib/glib
 /usr/X11R6/include/*
@@ -105,10 +110,12 @@ fi
 /usr/info/glib.info*
 
 %attr(755,root,root) /usr/X11R6/bin/*
-%attr(644,root,root) /usr/X11R6/man/man1/glib-config.1.gz
+%attr(644,root, man) /usr/X11R6/man/man1/glib-config.1.gz
 
 %files static
-%attr(644,root,root) /usr/X11R6/lib/lib*.a
+%defattr(644,root,root,755)
+
+/usr/X11R6/lib/lib*.a
 
 %changelog
 * Mon Jan 18 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
@@ -116,6 +123,7 @@ fi
 - added Group(pl) and changed all Group fields,
 - added "Requires: autoconf >= 2.13, automake >= 1.4, libtool >= 1.2d"
   for devel subpackage.
+
 
 * Sat Jan 01 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.1.11-1]
@@ -145,7 +153,8 @@ fi
 - added using %%{name} and %%{version} macros in Source,
 - Buildroot changed to /tmp/%%{name}-%%{version}-root,
 - added static subpackage,
-- added stripping shared libs.
+- added stripping shared libs,
+- build against GNU libc-2.1.
 
 * Mon Apr 13 1998 Marc Ewing <marc@redhat.com>
 - Split out glib package
