@@ -8,7 +8,7 @@ Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
 Version:	1.2.10
-Release:	4
+Release:	5
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -20,6 +20,7 @@ Source1:	http://developer.gnome.org/doc/API/%{name}-docs.tar.gz
 Patch0:		%{name}-info.patch
 URL:		http://www.gtk.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	libglib1.2
 
 %define		_prefix		/usr
 
@@ -66,6 +67,7 @@ Requires:	%{name} = %{version}
 Requires:	autoconf >= 2.13
 Requires:	automake >= 1.4
 Requires:	libtool	 >= 1.3.2 
+Obsoletes:	libglib1.2-devel
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
