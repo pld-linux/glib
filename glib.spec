@@ -124,7 +124,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_libdir}/lib*.so
 
-%{_libdir}/glib
 %{_includedir}/*
 %{_datadir}/aclocal/*
 
