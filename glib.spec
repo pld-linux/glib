@@ -19,8 +19,8 @@ also generally useful data structures used by GIMP and many other.
 
 %description -l pl
 Glib jest zestawem bibliotek zawieraj±cych funkcje do obs³ugi list, drzewek,
-funkcji mieszaj±cych, dunkcji do alokacji pamiêci i wielu innych
-podstawowych funkcji i ró¿nch struktór danych u¿ywanych przez program GIMP i
+funkcji mieszaj±cych, funkcji do alokacji pamiêci i wielu innych
+podstawowych funkcji i ró¿nych struktur danych u¿ywanych przez program GIMP i
 wiele innch.
 
 %package devel
@@ -40,8 +40,8 @@ available as public libraries. GLIB includes generally useful data
 structures.
 
 %description -l pl devel
-Pliki nag³owkowe i dokumentacja do glib przydatna przy pisaniu programów
-wykorzystuj±cych biblioteki glib.
+Pliki nag³ówkowe i dokumentacja do glib przydatna przy pisaniu programów
+wykorzystuj±cych tê bibliotekê.
 
 %package static
 Summary:	Static glib libraries
