@@ -7,14 +7,15 @@ Summary(fr):	Bibliothèque de fonctions utilitaires.
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
-Version:	1.2.8
+Version:	1.3.1
 Release:	2
 License:	LGPL
 Group:		Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
-Patch0:		glib-info.patch
+# seems to be no info inside since version 1.3.1
+#Patch0:		glib-info.patch
 URL:		http://www.gtk.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -88,7 +89,6 @@ Biblioteki statyczne do glib.
 
 %prep
 %setup -q
-%patch -p1
 
 %build
 %configure \
@@ -103,8 +103,11 @@ rm -rf $RPM_BUILD_ROOT
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT%{_infodir}/glib* \
-	$RPM_BUILD_ROOT%{_mandir}/man1/* \
+# hmm glib-config looks to be buggy: it lists -lgmodule even if 
+# old libgmodule.so from glib-1.2 is absent
+ln -s libgmodule-1.3.so $RPM_BUILD_ROOT%{_libdir}/libgmodule.so
+
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
 	AUTHORS ChangeLog NEWS README
 
 %post   -p /sbin/ldconfig
@@ -129,11 +132,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_libdir}/lib*.so
 
-%{_libdir}/glib
+%{_libdir}/glib*
 %{_includedir}/*
 %{_aclocaldir}/*
 
-%{_infodir}/glib.info*
+#%{_infodir}/glib.info*
 
 %attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/glib-config.1.*
