@@ -63,7 +63,7 @@ dosyalarý glib-devel paketinde yer almaktadýr.
 Summary:	Glib heades files, documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 Requires:	autoconf >= 2.13
 Requires:	automake >= 1.4
 Requires:	libtool	 >= 1.3.2
@@ -82,7 +82,7 @@ programów wykorzystuj±cych tê bibliotekê.
 Summary:	Static glib libraries
 Summary(pl):	Biblioteki statyczne do glib
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description static
 Static glib libraries.
