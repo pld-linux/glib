@@ -95,7 +95,7 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT configincludedir=%{_includedir}
+make install DESTDIR=$RPM_BUILD_ROOT
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
@@ -124,6 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_libdir}/lib*.so
 
+%{_libdir}/glib
 %{_includedir}/*
 %{_datadir}/aclocal/*
 
