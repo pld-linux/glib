@@ -15,7 +15,7 @@ Group(pl):	Biblioteki
 Source:		ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
 Patch0:		glib-info.patch
 URL:		http://www.gtk.org/
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr
 
