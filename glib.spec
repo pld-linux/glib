@@ -1,8 +1,8 @@
 Summary:	Useful routines for 'C' programming
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Name:		glib
-Version:	1.1.15
-Release:	1d
+Version:	1.1.16
+Release:	1
 Copyright:	LGPL
 Group:		X11/Libraries
 Group(pl):	X11/Biblioteki
@@ -82,20 +82,19 @@ bzip2 -9  AUTHORS ChangeLog NEWS README
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %post devel
 /sbin/install-info /usr/info/glib.info.gz /etc/info-dir
 
 %preun devel
-if [ $1 = 0 ]; then
+if [ "$1" = "0" ]; then
 	/sbin/install-info --delete /usr/info/glib.info.gz /etc/info-dir
 fi
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %files
-%defattr(755,root,root,755)
-/usr/X11R6/lib/libg*.so.*
+%attr(755,root,root) /usr/X11R6/lib/libg*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
@@ -110,20 +109,21 @@ fi
 /usr/info/glib.info*
 
 %attr(755,root,root) /usr/X11R6/bin/*
-%attr(644,root, man) /usr/X11R6/man/man1/glib-config.1.gz
+/usr/X11R6/man/man1/glib-config.1.gz
 
 %files static
-%defattr(644,root,root,755)
-
-/usr/X11R6/lib/lib*.a
+%attr(644,root,root) /usr/X11R6/lib/lib*.a
 
 %changelog
+* Wed Feb 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.1.16-1]
+- removed man group from man pages.
+
 * Mon Jan 18 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.1.13-1d]
 - added Group(pl) and changed all Group fields,
 - added "Requires: autoconf >= 2.13, automake >= 1.4, libtool >= 1.2d"
   for devel subpackage.
-
 
 * Sat Jan 01 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.1.11-1]
