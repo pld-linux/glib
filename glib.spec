@@ -114,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 - added using %%{name} and %%{version} macros in Source,
 - Buildroot changed to /tmp/%%{name}-%%{version}-root,
 - added static subpackage,
-- added striping shared libs.
+- added stripping shared libs.
 
 * Mon Apr 13 1998 Marc Ewing <marc@redhat.com>
 - Split out glib package
