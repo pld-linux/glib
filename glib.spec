@@ -8,7 +8,7 @@ Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
 Version:	1.2.10
-Release:	9
+Release:	10
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -18,10 +18,12 @@ Source1:	http://developer.gnome.org/doc/API/%{name}-docs.tar.gz
 #Source1-md5:	cae06bf952176ab008100b7b954242f8
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-ac25.patch
+Patch2:		%{name}-am18.patch
+Patch3:		%{name}-link.patch
 URL:		http://www.gtk.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	autoconf >= 2.13
+BuildRequires:	automake >= 1.4
+BuildRequires:	libtool >= 1:1.4.2-9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libglib1.2
 
@@ -62,9 +64,6 @@ Summary:	Glib heades files, documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}
-Requires:	autoconf >= 2.13
-Requires:	automake >= 1.4
-Requires:	libtool	 >= 1.3.2
 Obsoletes:	libglib1.2-devel
 
 %description devel
@@ -92,9 +91,10 @@ Biblioteki statyczne do glib.
 %setup -q -a1
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
-cp -f /usr/share/automake/config.* .
 rm -f acinclude.m4
 %{__libtoolize}
 %{__aclocal}
