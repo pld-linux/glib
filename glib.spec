@@ -10,7 +10,6 @@ Source:		ftp://ftp.gimp.org/pub/gtk/v1.1/%{name}-%{version}.tar.gz
 Patch0:		glib-info.patch
 URL:		http://www.gtk.org/
 BuildRoot:	/tmp/%{name}-%{version}-root
-Conflicts:	glibc <= 2.0.7
 
 %description
 GLib, is a library which includes support routines for C such as lists,
@@ -62,7 +61,7 @@ Biblioteki statyczne do glib.
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure \
+./configure %{_target} \
 	--prefix=/usr \
 	--enable-threads
 make
