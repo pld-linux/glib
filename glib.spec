@@ -59,7 +59,6 @@ Requires:	%{name} = %{version}
 Requires:	autoconf >= 2.13
 Requires:	automake >= 1.4
 Requires:	libtool	 >= 1.3.2 
-Prereq:		/usr/sbin/fix-info-dir
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which are
@@ -106,10 +105,10 @@ gzip -9nf $RPM_BUILD_ROOT%{_infodir}/glib* \
 %postun -p /sbin/ldconfig
 
 %post devel
-/usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+[ -x /usr/sbin/fix-info-dir ] && /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %postun devel
-/usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
+[ -x /usr/sbin/fix-info-dir ] && /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
