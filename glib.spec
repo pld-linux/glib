@@ -85,9 +85,7 @@ Biblioteki statyczne do glib.
 %patch -p1
 
 %build
-autoconf
 %configure \
-	--prefix=%{_prefix} \
 	--enable-threads
 make
 
