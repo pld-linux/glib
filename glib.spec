@@ -73,19 +73,19 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT/usr/share/info/glib* \
-	$RPM_BUILD_ROOT/usr/share/man/man1/* \
+gzip -9nf $RPM_BUILD_ROOT%{_infodir}/glib* \
+	$RPM_BUILD_ROOT%{_mandir}/man1/* \
 	AUTHORS ChangeLog NEWS README
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %post devel
-/sbin/install-info /usr/share/info/glib.info.gz /etc/info-dir
+/sbin/install-info %{_infodir}/glib.info.gz /etc/info-dir
 
 %preun devel
 if [ "$1" = "0" ]; then
-	/sbin/install-info --delete /usr/share/info/glib.info.gz /etc/info-dir
+	/sbin/install-info --delete %{_infodir}/glib.info.gz /etc/info-dir
 fi
 
 %clean
@@ -104,10 +104,10 @@ rm -rf $RPM_BUILD_ROOT
 /usr/include/*
 /usr/share/aclocal/*
 
-/usr/share/info/glib.info*
+%{_infodir}/glib.info*
 
 %attr(755,root,root) /usr/bin/*
-/usr/share/man/man1/glib-config.1.*
+%{_mandir}/man1/glib-config.1.*
 
 %files static
 %attr(644,root,root) /usr/lib/lib*.a
