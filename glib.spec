@@ -101,6 +101,7 @@ rm -f acinclude.m4
 %{__autoconf}
 %{__automake}
 %configure \
+	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--enable-threads
 %{__make}
 
