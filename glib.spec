@@ -10,6 +10,7 @@ Source:		ftp://ftp.gimp.org/pub/gtk/v1.1/%{name}-%{version}.tar.gz
 Patch0:		glib-info.patch
 URL:		http://www.gtk.org/
 BuildRoot:	/tmp/%{name}-%{version}-root
+Conflicts:	glibc <= 2.0.7
 
 %description
 GLib, is a library which includes support routines for C such as lists,
@@ -116,7 +117,9 @@ rm -rf $RPM_BUILD_ROOT
 * Sat Feb 27 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.2.0-1]
 - changed Group fields to Libraries, Development/Libraries and
-  prefix to /usr (glib is not X11 library).
+  prefix to /usr (glib is not X11 library),
+- added "Conflicts: glibc <= 2.0.7" for prevent install glib
+  with proper version glibc.
 
 * Wed Feb 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.1.16-1]
