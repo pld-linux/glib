@@ -102,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_libdir}/glib
 /usr/include/*
-/usr/share/aclocal/*
+%{_datadir}/aclocal/*
 
 %{_infodir}/glib.info*
 
