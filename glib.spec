@@ -25,8 +25,6 @@ BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libglib1.2
 
-%define		_prefix		/usr
-
 %description
 GLib, is a library which includes support routines for C such as
 lists, trees, hashes, memory allocation, and many other things. GLIB
@@ -108,6 +106,7 @@ rm -f acinclude.m4
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
@@ -133,16 +132,14 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc glib/*.html
+%attr(755,root,root) %{_bindir}/glib-config
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
-%{_pkgconfigdir}/*
 %{_libdir}/glib
 %{_includedir}/*
+%{_pkgconfigdir}/*
 %{_aclocaldir}/*
-
 %{_infodir}/glib.info*
-
-%attr(755,root,root) %{_bindir}/*
 %{_mandir}/man1/glib-config.1.*
 
 %files static
