@@ -8,7 +8,7 @@ Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
 Version:	1.2.7
-Release:	2
+Release:	3
 Copyright:	LGPL
 Group:		Libraries
 Group(pl):	Biblioteki
