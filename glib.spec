@@ -17,7 +17,6 @@ Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
 Patch0:		%{name}-info.patch
-Patch1:		glib-gccwarn.patch
 URL:		http://www.gtk.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -94,7 +93,6 @@ Biblioteki statyczne do glib.
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
 
 %build
 %configure \
@@ -127,10 +125,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc {AUTHORS,ChangeLog,NEWS,README}.gz
-
+%doc *.gz
 %attr(755,root,root) %{_libdir}/lib*.so
-
+%attr(755,root,root) %{_libdir}/lib*.la
+%{_libdir}/pkgconfig/*
 %{_libdir}/glib
 %{_includedir}/*
 %{_aclocaldir}/*
