@@ -7,7 +7,7 @@ Summary(fr):	Bibliothèque de fonctions utilitaires.
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
-Version:	1.2.5
+Version:	1.2.6
 Release:	1
 Copyright:	LGPL
 Group:		Libraries
