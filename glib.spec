@@ -1,11 +1,11 @@
 Summary:     Useful routines for 'C' programming
 Summary(pl): Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Name:        glib
-Version:     1.1.7
+Version:     1.1.9
 Release:     1
 Copyright:   LGPL
 Group:       Libraries
-Source:      ftp://ftp.gimp.org/pub/gtk/v1.0/%{name}-%{version}.tar.gz
+Source:      ftp://ftp.gimp.org/pub/gtk/v1.1/%{name}-%{version}.tar.gz
 URL:         http://www.gtk.org/
 BuildRoot:   /tmp/%{name}-%{version}-root
 
@@ -24,7 +24,8 @@ wiele innch.
 Summary:     Glib heades files, documentation
 Summary(pl): Pliki nag³ówkowe i dokumentacja do glib
 Group:       X11/Libraries
-Requires:    %{name} = %{version}, /sbin/install-info
+Prereq:      /sbin/install-info
+Requires:    %{name} = %{version}
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which are
@@ -51,10 +52,12 @@ Biblioteki statyczne do glib.
 %setup -q
 
 %build
-CFLAGS="$RPM_OPT_FLAGS" ./configure \
+CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
+./configure \
 	--prefix=/usr/X11R6 \
 	--datadir=/usr/share \
-	--infodir=/usr/info
+	--infodir=/usr/info \
+	--enable-threads
 make
 
 %install
@@ -63,22 +66,20 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 strip $RPM_BUILD_ROOT/usr/X11R6/lib/lib*.so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT/usr/info/glib*
+gzip -9nf $RPM_BUILD_ROOT/usr/{info/glib*,X11R6/man/man1/*}
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
 
 %post devel
 /sbin/install-info /usr/info/glib.info.gz /usr/info/dir --entry \
 "* GLIB: (glib).                                 Useful routines for 'C' programming"
 
 %preun devel
-/sbin/install-info --delete /usr/info/glib.info.gz /usr/info/dir --entry \
-"* GLIB: (glib).                                 Useful routines for 'C' programming"
-
+/sbin/install-info --delete /usr/info/glib.info.gz /usr/info-dir
 
 %files
 %attr(755, root, root) /usr/X11R6/lib/libg*.so.*.*
@@ -92,12 +93,20 @@ rm -rf $RPM_BUILD_ROOT
 /usr/share/aclocal/*
 /usr/info/glib.info*
 %attr(755, root, root) /usr/X11R6/bin/*
-%attr(644, root, root) /usr/X11R6/man/man1/glib-config.1
+%attr(644, root, root) /usr/X11R6/man/man1/glib-config.1.gz
 
 %files static
 %attr(644, root, root) /usr/X11R6/lib/lib*.a
 
 %changelog
+* Sat Dec 19 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.1.9-1]
+- added gzipping man pages,
+- /sbin/install-info moved to Prereq in devel,
+- standarized {un}registering info pages,
+- added --enable-threads ./confogure parameter.
+- added using LDFLAGS="-s" to ./configure enviroment.
+
 * Tue Nov 24 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.1.5-1]
 - added pl translation,
