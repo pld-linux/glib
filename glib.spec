@@ -2,7 +2,7 @@ Summary:	Useful routines for 'C' programming
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Name:		glib
 Version:	1.1.14
-Release:	1d
+Release:	1
 Copyright:	LGPL
 Group:		X11/Libraries
 Group(pl):	X11/Biblioteki
@@ -112,7 +112,7 @@ fi
 
 %changelog
 * Mon Jan 18 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.1.13-1d]
+  [1.1.13-1]
 - added Group(pl) and changed all Group fields,
 - added "Requires: autoconf >= 2.13, automake >= 1.4, libtool >= 1.2d"
   for devel subpackage.
