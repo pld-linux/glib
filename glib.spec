@@ -4,8 +4,8 @@ Name:		glib
 Version:	1.2.0
 Release:	1
 Copyright:	LGPL
-Group:		X11/Libraries
-Group(pl):	X11/Biblioteki
+Group:		Libraries
+Group(pl):	Biblioteki
 Source:		ftp://ftp.gimp.org/pub/gtk/v1.1/%{name}-%{version}.tar.gz
 Patch0:		glib-info.patch
 URL:		http://www.gtk.org/
@@ -25,8 +25,8 @@ wiele innch.
 %package devel
 Summary:	Glib heades files, documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
-Group:		X11/Libraries/Development
-Group(pl):	X11/Biblioteki/Programowanie
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
 Prereq:		/sbin/install-info
 Requires:	%{name} = %{version}
 Requires:	autoconf >= 2.13
@@ -45,8 +45,8 @@ wykorzystuj±cych biblioteki glib.
 %package static
 Summary:	Static glib libraries
 Summary(pl):	Biblioteki statyczne do glib
-Group:		X11/Libraries/Development
-Group(pl):	X11/Biblioteki/Programowanie
+Group:		Development/Libraries
+Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -62,9 +62,7 @@ Biblioteki statyczne do glib.
 %build
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure \
-	--prefix=/usr/X11R6 \
-	--datadir=/usr/share \
-	--infodir=/usr/info \
+	--prefix=/usr \
 	--enable-threads
 make
 
@@ -72,11 +70,11 @@ make
 rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 
-strip $RPM_BUILD_ROOT/usr/X11R6/lib/lib*.so.*.*
+strip $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT/usr/info/glib* 
 
-gzip -9fn $RPM_BUILD_ROOT/usr/X11R6/man/man1/*
+gzip -9fn $RPM_BUILD_ROOT/usr/man/man1/*
 bzip2 -9  AUTHORS ChangeLog NEWS README
 
 %post   -p /sbin/ldconfig
@@ -94,27 +92,32 @@ fi
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(755,root,root) /usr/X11R6/lib/libg*.so.*.*
+%attr(755,root,root) /usr/lib/libg*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %doc {AUTHORS,ChangeLog,NEWS,README}.bz2
 
-%attr(755,root,root) /usr/X11R6/lib/lib*.so
+%attr(755,root,root) /usr/lib/lib*.so
 
-/usr/X11R6/lib/glib
-/usr/X11R6/include/*
+/usr/lib/glib
+/usr/include/*
 /usr/share/aclocal/*
 
 /usr/info/glib.info*
 
-%attr(755,root,root) /usr/X11R6/bin/*
-/usr/X11R6/man/man1/glib-config.1.gz
+%attr(755,root,root) /usr/bin/*
+/usr/man/man1/glib-config.1.gz
 
 %files static
-%attr(644,root,root) /usr/X11R6/lib/lib*.a
+%attr(644,root,root) /usr/lib/lib*.a
 
 %changelog
+* Sat Feb 27 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.2.0-1]
+- changed Group fields to Libraries, Development/Libraries and
+  prefix to /usr (glib is not X11 library).
+
 * Wed Feb 24 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.1.16-1]
 - removed man group from man pages.
