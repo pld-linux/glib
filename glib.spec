@@ -13,7 +13,9 @@ Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
+# Source0-md5:	6fe30dad87c77b91b632def29dd69ef9
 Source1:	http://developer.gnome.org/doc/API/%{name}-docs.tar.gz
+# Source1-md5:	cae06bf952176ab008100b7b954242f8
 Patch0:		%{name}-info.patch
 URL:		http://www.gtk.org/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
