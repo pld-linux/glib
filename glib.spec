@@ -1,4 +1,4 @@
-%bcond_without	static	# don't build static library
+%bcond_without	static_libs	# don't build static library
 Summary:	Useful routines for 'C' programming
 Summary(cs):	©ikovná knihovna s funkcemi pro pomocné programy
 Summary(da):	Nyttige biblioteksfunktioner
@@ -107,7 +107,7 @@ rm -f acinclude.m4
 %configure \
 	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--enable-threads \
-	%{!?with_static:--disable-static}
+	%{!?with_static_libs:--disable-static}
 %{__make}
 
 %install
@@ -148,7 +148,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/glib.info*
 %{_mandir}/man1/glib-config.1.*
 
-%if %{with static}
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
