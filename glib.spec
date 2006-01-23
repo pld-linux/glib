@@ -11,7 +11,7 @@ Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
 Version:	1.2.10
-Release:	11
+Release:	12
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -31,6 +31,8 @@ BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	texinfo
 Obsoletes:	libglib1.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		specflags	-fno-strict-aliasing
 
 %description
 GLib, is a library which includes support routines for C such as
@@ -110,7 +112,8 @@ rm -f acinclude.m4
 	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--enable-threads \
 	%{!?with_static_libs:--disable-static}
-%{__make}
+
+%{__make} all check
 
 %install
 rm -rf $RPM_BUILD_ROOT
