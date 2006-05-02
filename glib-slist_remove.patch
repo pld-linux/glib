@@ -1,0 +1,13 @@
+removal of a list element frees only one memory block instead of all.
+
+--- glib-1.2.10/gslist.c.orig	2000-08-09 20:12:31.000000000 +0200
++++ glib-1.2.10/gslist.c	2006-05-02 22:08:00.000000000 +0200
+@@ -278,7 +278,7 @@ g_slist_remove (GSList   *list,
+ 	    list = list->next;
+ 
+ 	  tmp->next = NULL;
+-	  g_slist_free (tmp);
++	  g_slist_free_1 (tmp);
+ 
+ 	  break;
+ 	}
