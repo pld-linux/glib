@@ -1,4 +1,6 @@
+#
 # Conditional build:
+#
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Useful routines for 'C' programming
@@ -11,7 +13,7 @@ Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
 Version:	1.2.10
-Release:	12
+Release:	13
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -24,6 +26,7 @@ Patch1:		%{name}-ac25.patch
 Patch2:		%{name}-am18.patch
 Patch3:		%{name}-link.patch
 Patch4:		%{name}-gcc34.patch
+Patch5:		%{name}-slist_remove.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.13
 BuildRequires:	automake >= 1.4
@@ -101,6 +104,7 @@ Biblioteki statyczne do glib.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 rm -f acinclude.m4
