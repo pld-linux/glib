@@ -1,0 +1,3 @@
+- release 4,
+- spec adapterized,
+- added using %{_aclocaldir} macro.
