@@ -1,0 +1,3 @@
+- s/configure/configure2_13/
+- im not able to fix that. and regenerating ac stuff causes fail in libtool
+- could somebody with better ac/am knowledge check how to fix that?
