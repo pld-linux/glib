@@ -155,7 +155,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/*
 %{_aclocaldir}/*
 %{_infodir}/glib.info*
-%{_mandir}/man1/glib-config.1.*
+%{_mandir}/man1/glib-config.1*
 
 %if %{with static_libs}
 %files static
