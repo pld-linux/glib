@@ -4,13 +4,13 @@
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Useful routines for 'C' programming
-Summary(cs):	©ikovná knihovna s funkcemi pro pomocné programy
-Summary(da):	Nyttige biblioteksfunktioner
-Summary(de):	Eine nützliche Library von Dienstprogramm-Funktionen
-Summary(fi):	Kirjasto, jossa on työkalufunktioita
-Summary(fr):	Bibliothèque de fonctions utilitaires
-Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
-Summary(tr):	Yararlı ufak yordamlar kitaplığı
+Summary(cs.UTF-8):   Å ikovnÃ¡ knihovna s funkcemi pro pomocnÃ© programy
+Summary(da.UTF-8):   Nyttige biblioteksfunktioner
+Summary(de.UTF-8):   Eine nÃ¼tzliche Library von Dienstprogramm-Funktionen
+Summary(fi.UTF-8):   Kirjasto, jossa on tyÃ¶kalufunktioita
+Summary(fr.UTF-8):   BibliothÃ¨que de fonctions utilitaires
+Summary(pl.UTF-8):   Biblioteka zawierajÄ…ca wiele uÅ¼ytecznych funkcji C
+Summary(tr.UTF-8):   YararlÄ± ufak yordamlar kitaplÄ±ÄŸÄ±
 Name:		glib
 Version:	1.2.10
 Release:	14
@@ -43,35 +43,35 @@ lists, trees, hashes, memory allocation, and many other things. GLIB
 includes also generally useful data structures used by GIMP and many
 other.
 
-%description -l cs
-©ikovná knihovna s funkcemi pro pomocné programy. Vıvojové knihovny a
-hlavièky jsou v balíèku glib-devel.
+%description -l cs.UTF-8
+Å ikovnÃ¡ knihovna s funkcemi pro pomocnÃ© programy. VÃ½vojovÃ© knihovny a
+hlaviÄky jsou v balÃ­Äku glib-devel.
 
-%description -l da
+%description -l da.UTF-8
 Nyttigt bibliotek med forskellige funktioner. Udviklings- biblioteker
 og headerfiler er i glib-devel pakken.
 
-%description -l de
-Eine nützliche Library von Dienstprogramm-Funktionen.
+%description -l de.UTF-8
+Eine nÃ¼tzliche Library von Dienstprogramm-Funktionen.
 Entwicklungs-Libraries und Header befinden sich in glib-devel.
 
-%description -l fi
-Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja
+%description -l fi.UTF-8
+Kirjasto, jossa on tyÃ¶kalufunktioita. Kehitysversiot ja
 header-tiedostot ovat glib-devel-paketissa.
 
-%description -l pl
-Glib jest zestawem bibliotek zawieraj±cych funkcje do obs³ugi list,
-drzewek, funkcji mieszaj±cych, funkcji do alokacji pamiêci i wielu
-innych podstawowych funkcji i ró¿nych struktur danych u¿ywanych przez
+%description -l pl.UTF-8
+Glib jest zestawem bibliotek zawierajÄ…cych funkcje do obsÅ‚ugi list,
+drzewek, funkcji mieszajÄ…cych, funkcji do alokacji pamiÄ™ci i wielu
+innych podstawowych funkcji i rÃ³Å¼nych struktur danych uÅ¼ywanych przez
 program GIMP i wiele innych.
 
-%description -l tr
-Yararlı yordamlar kitaplığı. Geliştirme kitaplıkları ve başlık
-dosyaları glib-devel paketinde yer almaktadır.
+%description -l tr.UTF-8
+YararlÄ± yordamlar kitaplÄ±ÄŸÄ±. GeliÅŸtirme kitaplÄ±klarÄ± ve baÅŸlÄ±k
+dosyalarÄ± glib-devel paketinde yer almaktadÄ±r.
 
 %package devel
 Summary:	Glib heades files, documentation
-Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe i dokumentacja do glib
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	libglib1.2-devel
@@ -81,20 +81,20 @@ Header files for the support library for the GIMP's X libraries, which
 are available as public libraries. GLIB includes generally useful data
 structures.
 
-%description devel -l pl
-Pliki nag³ówkowe i dokumentacja do glib przydatna przy pisaniu
-programów wykorzystuj±cych tê bibliotekê.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe i dokumentacja do glib przydatna przy pisaniu
+programÃ³w wykorzystujÄ…cych tÄ™ bibliotekÄ™.
 
 %package static
 Summary:	Static glib libraries
-Summary(pl):	Biblioteki statyczne do glib
+Summary(pl.UTF-8):   Biblioteki statyczne do glib
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static glib libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne do glib.
 
 %prep
