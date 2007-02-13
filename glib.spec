@@ -4,13 +4,13 @@
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Useful routines for 'C' programming
-Summary(cs.UTF-8):   Šikovná knihovna s funkcemi pro pomocné programy
-Summary(da.UTF-8):   Nyttige biblioteksfunktioner
-Summary(de.UTF-8):   Eine nützliche Library von Dienstprogramm-Funktionen
-Summary(fi.UTF-8):   Kirjasto, jossa on työkalufunktioita
-Summary(fr.UTF-8):   Bibliothèque de fonctions utilitaires
-Summary(pl.UTF-8):   Biblioteka zawierająca wiele użytecznych funkcji C
-Summary(tr.UTF-8):   Yararlı ufak yordamlar kitaplığı
+Summary(cs.UTF-8):	Šikovná knihovna s funkcemi pro pomocné programy
+Summary(da.UTF-8):	Nyttige biblioteksfunktioner
+Summary(de.UTF-8):	Eine nützliche Library von Dienstprogramm-Funktionen
+Summary(fi.UTF-8):	Kirjasto, jossa on työkalufunktioita
+Summary(fr.UTF-8):	Bibliothèque de fonctions utilitaires
+Summary(pl.UTF-8):	Biblioteka zawierająca wiele użytecznych funkcji C
+Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Name:		glib
 Version:	1.2.10
 Release:	14
@@ -71,7 +71,7 @@ dosyaları glib-devel paketinde yer almaktadır.
 
 %package devel
 Summary:	Glib heades files, documentation
-Summary(pl.UTF-8):   Pliki nagłówkowe i dokumentacja do glib
+Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do glib
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Obsoletes:	libglib1.2-devel
@@ -87,7 +87,7 @@ programów wykorzystujących tę bibliotekę.
 
 %package static
 Summary:	Static glib libraries
-Summary(pl.UTF-8):   Biblioteki statyczne do glib
+Summary(pl.UTF-8):	Biblioteki statyczne do glib
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
