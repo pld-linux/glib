@@ -117,7 +117,7 @@ rm -f acinclude.m4
 	--enable-threads \
 	%{!?with_static_libs:--disable-static}
 
-%{__make} all check
+%{__make} -j1 all check
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -126,6 +126,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
+
+rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 
 %clean
 rm -rf $RPM_BUILD_ROOT
