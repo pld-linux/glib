@@ -1,0 +1,22 @@
+--- glib-1.2.10/grel.c.orig	2014-01-14 17:20:07.681398131 +0100
++++ glib-1.2.10/grel.c	2014-01-14 17:25:29.556375837 +0100
+@@ -413,7 +413,7 @@ g_relation_print_one (gpointer tuple_key
+     }
+   
+   g_string_append (gstring, "]");
+-  g_log (g_log_domain_glib, G_LOG_LEVEL_INFO, gstring->str);
++  g_log (g_log_domain_glib, G_LOG_LEVEL_INFO, "%s", gstring->str);
+   g_string_free (gstring, TRUE);
+ }
+ 
+--- glib-1.2.10/testglib.c.orig	2014-01-14 17:30:27.014309291 +0100
++++ glib-1.2.10/testglib.c	2014-01-14 17:32:34.106274731 +0100
+@@ -901,7 +901,7 @@ main (int   argc,
+   g_warning ("harmless warning with parameters: %d %s %#x", 42, "Boo", 12345);
+   g_message ("the next warning is a test:");
+   string = NULL;
+-  g_print (string);
++  g_print (NULL);
+ 
+   g_print ("checking endian macros (host is ");
+ #if G_BYTE_ORDER == G_BIG_ENDIAN
