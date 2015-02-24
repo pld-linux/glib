@@ -13,7 +13,7 @@ Summary(pl.UTF-8):	Biblioteka zawierająca wiele użytecznych funkcji C
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Name:		glib
 Version:	1.2.10
-Release:	18
+Release:	19
 Epoch:		1
 License:	LGPL
 Group:		Libraries
