@@ -13,7 +13,7 @@ Summary(pl.UTF-8):	Biblioteka zawierająca wiele użytecznych funkcji C
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Name:		glib
 Version:	1.2.10
-Release:	19
+Release:	20
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -29,6 +29,7 @@ Patch4:		%{name}-gcc34.patch
 Patch5:		%{name}-slist_remove.patch
 Patch6:		format-security.patch
 Patch7:		texi-subsection.patch
+Patch8:		inline.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.13
 BuildRequires:	automake >= 1.4
@@ -109,6 +110,7 @@ Biblioteki statyczne do glib.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
 rm -f acinclude.m4

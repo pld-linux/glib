@@ -1,0 +1,26 @@
+--- glib-1.2.10/glib.h~	2001-02-27 04:44:38.000000000 +0100
++++ glib-1.2.10/glib.h	2015-12-21 19:07:13.973726258 +0100
+@@ -203,18 +203,11 @@
+ #endif
+ #ifndef G_INLINE_FUNC
+ #  ifdef __GNUC__
+-#    ifdef __OPTIMIZE__
+-#      define G_INLINE_FUNC extern inline
+-#    else
+-#      undef G_CAN_INLINE
+-#      define G_INLINE_FUNC extern
+-#    endif
+-#  else /* !__GNUC__ */
+-#    ifdef G_CAN_INLINE
+-#      define G_INLINE_FUNC static inline
+-#    else
+-#      define G_INLINE_FUNC extern
+-#    endif
++#    define G_INLINE_FUNC static __inline __attribute__ ((unused))
++#  elif defined (G_CAN_INLINE)
++#    define G_INLINE_FUNC static inline
++#  else
++#    define G_INLINE_FUNC extern
+ #  endif /* !__GNUC__ */
+ #endif /* !G_INLINE_FUNC */
+ 
