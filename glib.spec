@@ -1,7 +1,6 @@
 #
 # Conditional build:
-#
-%bcond_without	static_libs	# don't build static library
+%bcond_without	static_libs	# static library
 #
 Summary:	Useful routines for 'C' programming
 Summary(cs.UTF-8):	Šikovná knihovna s funkcemi pro pomocné programy
@@ -13,9 +12,9 @@ Summary(pl.UTF-8):	Biblioteka zawierająca wiele użytecznych funkcji C
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Name:		glib
 Version:	1.2.10
-Release:	20
+Release:	21
 Epoch:		1
-License:	LGPL
+License:	LGPL v2+
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.2/%{name}-%{version}.tar.gz
 #Source0-md5:	6fe30dad87c77b91b632def29dd69ef9
@@ -30,6 +29,7 @@ Patch5:		%{name}-slist_remove.patch
 Patch6:		format-security.patch
 Patch7:		texi-subsection.patch
 Patch8:		inline.patch
+Patch9:		%{name}-libdir.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.13
 BuildRequires:	automake >= 1.4
@@ -111,9 +111,10 @@ Biblioteki statyczne do glib.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
-rm -f acinclude.m4
+%{__rm} acinclude.m4
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -141,33 +142,45 @@ rm -rf $RPM_BUILD_ROOT
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%post devel	-p	/sbin/postshell
+%post	devel -p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
-%postun devel	-p	/sbin/postshell
+%postun devel -p /sbin/postshell
 -/usr/sbin/fix-info-dir -c %{_infodir}
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libg*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/libg*.so.0
+%attr(755,root,root) %{_libdir}/libglib-1.2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libglib-1.2.so.0
+%attr(755,root,root) %{_libdir}/libgmodule-1.2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgmodule-1.2.so.0
+%attr(755,root,root) %{_libdir}/libgthread-1.2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgthread-1.2.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %doc glib/*.html
 %attr(755,root,root) %{_bindir}/glib-config
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/libglib.so
+%attr(755,root,root) %{_libdir}/libgmodule.so
+%attr(755,root,root) %{_libdir}/libgthread.so
+%{_libdir}/libglib.la
+%{_libdir}/libgmodule.la
+%{_libdir}/libgthread.la
 %{_libdir}/glib
-%{_includedir}/*
-%{_pkgconfigdir}/*
-%{_aclocaldir}/*
+%{_includedir}/glib-1.2
+%{_pkgconfigdir}/glib.pc
+%{_pkgconfigdir}/gmodule.pc
+%{_pkgconfigdir}/gthread.pc
+%{_aclocaldir}/glib.m4
 %{_infodir}/glib.info*
 %{_mandir}/man1/glib-config.1*
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libglib.a
+%{_libdir}/libgmodule.a
+%{_libdir}/libgthread.a
 %endif

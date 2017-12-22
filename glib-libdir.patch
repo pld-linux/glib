@@ -1,0 +1,9 @@
+--- glib-1.2.10/glib-config.in.orig	2000-10-28 06:35:30.000000000 +0200
++++ glib-1.2.10/glib-config.in	2017-12-22 20:07:19.314819830 +0100
+@@ -104,5 +104,5 @@
+ 		libsp="@G_MODULE_LDFLAGS@ -lgmodule $libsp"
+ 		libsa="$libsa @G_MODULE_LIBS@"
+ 	fi
+-	echo -L@libdir@ $libsp $libsa
++	echo $libsp $libsa
+ fi
