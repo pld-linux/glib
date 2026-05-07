@@ -1,0 +1,44 @@
+--- glib-1.2.10/configure.in.orig	2026-05-07 01:18:36.000000000 +0200
++++ glib-1.2.10/configure.in	2026-05-07 01:58:58.913348019 +0200
+@@ -311,6 +311,7 @@
+ # Check for sys_siglist
+ AC_MSG_CHECKING(for sys_siglist)
+ AC_TRY_LINK(, [
++#include <stdlib.h>
+ extern char *sys_siglist[];
+ exit (sys_siglist[0]);
+ ], glib_ok=yes, glib_ok=no)
+@@ -321,7 +322,8 @@
+ 
+ # Check for sys_siglist decl (see Tue Jan 19 00:44:24 1999 in changelog)
+ AC_MSG_CHECKING(for sys_siglist declaration)
+-AC_TRY_COMPILE([#include <signal.h>], [
++AC_TRY_COMPILE([#include <signal.h>
++		#include <string.h>], [
+ strlen (sys_siglist[0]);
+ ], glib_ok=yes, glib_ok=no)
+ AC_MSG_RESULT($glib_ok)
+@@ -422,6 +424,7 @@
+ AC_CACHE_VAL(glib_cv_va_copy,[
+ 	AC_TRY_RUN([
+ 	#include <stdarg.h>
++	#include <stdlib.h>
+ 	void f (int i, ...) {
+ 	va_list args1, args2;
+ 	va_start (args1, i);
+@@ -444,6 +447,7 @@
+ AC_CACHE_VAL(glib_cv___va_copy,[
+ 	AC_TRY_RUN([
+ 	#include <stdarg.h>
++	#include <stdlib.h>
+ 	void f (int i, ...) {
+ 	va_list args1, args2;
+ 	va_start (args1, i);
+@@ -466,6 +470,7 @@
+ AC_CACHE_VAL(glib_cv_va_val_copy,[
+ 	AC_TRY_RUN([
+ 	#include <stdarg.h>
++	#include <stdlib.h>
+ 	void f (int i, ...) {
+ 	va_list args1, args2;
+ 	va_start (args1, i);
